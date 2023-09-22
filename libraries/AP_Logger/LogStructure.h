@@ -467,6 +467,23 @@ struct PACKED log_RFND {
 };
 
 /*
+  forceTorque - support for 2 sensors
+ */
+struct PACKED log_FRTQ {
+    LOG_PACKET_HEADER;
+    uint64_t time_us;
+    uint8_t instance;
+    float force_x_N;
+    float force_y_N;
+    float force_z_N;
+    float torque_x_N;
+    float torque_y_N;
+    float torque_z_N;
+    uint8_t status;
+    uint8_t location;
+};
+
+/*
   terrain log structure
  */
 struct PACKED log_TERRAIN {
@@ -1208,6 +1225,19 @@ struct PACKED log_VER {
 // @Field: ThrOut: Throttle output
 // @Field: FailFlags: bit 0 motor failed, bit 1 motors balanced, should be 2 in normal flight
 
+// @LoggerMessage: FRTQ
+// @Description: Force and torque message on coaxial with different install location of ForceTorque sensor
+// @Field: TimeUS: Time since system startup
+// @Field: Instance: ForceTorque instance number this data is from
+// @Field: force_x_N: force x in body axis from sensor
+// @Field: force_y_N: force y in body axis from sensor
+// @Field: force_z_N: force z in body axis from sensor
+// @Field: torque_x_N: torque y in body axis from sensor
+// @Field: torque_y_N: torque x in body axis from sensor
+// @Field: torque_z_N: torque y in body axis from sensor
+// @Field: Stat: Sensor state
+// @Field: Location: Sensor location
+
 // messages for all boards
 #define LOG_COMMON_STRUCTURES \
     { LOG_FORMAT_MSG, sizeof(log_Format), \
@@ -1334,7 +1364,10 @@ LOG_STRUCTURE_FROM_AIS \
     { LOG_VER_MSG, sizeof(log_VER), \
       "VER",   "QBHBBBBIZH", "TimeUS,BT,BST,Maj,Min,Pat,FWT,GH,FWS,APJ", "s---------", "F---------", false }, \
     { LOG_MOTBATT_MSG, sizeof(log_MotBatt), \
-      "MOTB", "QfffffB",  "TimeUS,LiftMax,BatVolt,ThLimit,ThrAvMx,ThrOut,FailFlags", "s------", "F------" , true }
+      "MOTB", "QfffffB",  "TimeUS,LiftMax,BatVolt,ThLimit,ThrAvMx,ThrOut,FailFlags", "s------", "F------" , true }, \
+    { LOG_FRTQ_MSG, sizeof(log_FRTQ), \
+      "FRTQ", "QBffffffBB", "TimeUS,Instance,Fx,Fy,Fz,Mx,My,Mz,State,location", "s#--------", "F---------", true }
+
 
 // message types 0 to 63 reserved for vehicle specific use
 
@@ -1421,6 +1454,7 @@ enum LogMessages : uint8_t {
     LOG_RCOUT2_MSG,
     LOG_RCOUT3_MSG,
     LOG_IDS_FROM_FENCE,
+    LOG_FRTQ_MSG,     //forceTorque sensor
 
     _LOG_LAST_MSG_
 };

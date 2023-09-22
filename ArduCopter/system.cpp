@@ -154,6 +154,10 @@ void Copter::init_ardupilot()
     // initialise rangefinder
     init_rangefinder();
 
+    // initialise forceTorque sensors
+    forcetorque.set_log_frtq_bit(MASK_LOG_FRTQ);
+    forcetorque.init(LOCATION_NONE);
+
 #if HAL_PROXIMITY_ENABLED
     // init proximity sensor
     g2.proximity.init();

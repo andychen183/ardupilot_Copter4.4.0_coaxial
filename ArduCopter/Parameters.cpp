@@ -652,6 +652,12 @@ const AP_Param::Info Copter::var_info[] = {
     GOBJECT(rangefinder,   "RNGFND", RangeFinder),
 #endif
 
+#if FORCETORQUE_ENABLED == ENABLED
+    // @Group: FORCETORQUE
+    // @Path: ../libraries/AC_ForceTorque/AC_ForceTorque.cpp
+    GOBJECT(forcetorque,   "FRTQ", ForceTorque),
+#endif
+
 #if AP_TERRAIN_AVAILABLE
     // @Group: TERRAIN_
     // @Path: ../libraries/AP_Terrain/AP_Terrain.cpp
