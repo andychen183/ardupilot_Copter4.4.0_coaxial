@@ -658,9 +658,9 @@ void GCS_MAVLINK_Copter::send_banner()
         send_text(MAV_SEVERITY_INFO, "motors not allocated");
         return;
     }
-    char frame_and_type_string[30];
-    copter.motors->get_frame_and_type_string(frame_and_type_string, ARRAY_SIZE(frame_and_type_string));
-    send_text(MAV_SEVERITY_INFO, "%s", frame_and_type_string);
+    // char frame_and_type_string[30];
+    // copter.motors->get_frame_and_type_string(frame_and_type_string, ARRAY_SIZE(frame_and_type_string));
+    // send_text(MAV_SEVERITY_INFO, "%s", frame_and_type_string);
 }
 
 void GCS_MAVLINK_Copter::handle_command_ack(const mavlink_message_t &msg)

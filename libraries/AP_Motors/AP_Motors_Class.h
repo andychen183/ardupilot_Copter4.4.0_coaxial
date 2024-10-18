@@ -66,7 +66,6 @@ public:
         MOTOR_FRAME_HELI = 6,
         MOTOR_FRAME_TRI = 7,
         MOTOR_FRAME_SINGLE = 8,
-        MOTOR_FRAME_COAX = 9,
         MOTOR_FRAME_TAILSITTER = 10,
         MOTOR_FRAME_HELI_DUAL = 11,
         MOTOR_FRAME_DODECAHEXA = 12,
@@ -75,6 +74,7 @@ public:
         MOTOR_FRAME_SCRIPTING_MATRIX = 15,
         MOTOR_FRAME_6DOF_SCRIPTING = 16,
         MOTOR_FRAME_DYNAMIC_SCRIPTING_MATRIX = 17,
+        MOTOR_FRAME_COAX = 18,
     };
 
     // return string corresponding to frame_class
